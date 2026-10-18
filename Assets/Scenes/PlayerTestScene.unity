@@ -1175,6 +1175,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1421605384}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1479681225
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1479681226}
+  m_Layer: 0
+  m_Name: BulletSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1479681226
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1479681225}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.046, z: 0.536}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1867700937}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1630643024
 GameObject:
   m_ObjectHideFlags: 0
@@ -1597,6 +1628,7 @@ GameObject:
   - component: {fileID: 1867700934}
   - component: {fileID: 1867700938}
   - component: {fileID: 1867700940}
+  - component: {fileID: 1867700941}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1698,6 +1730,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1421605385}
+  - {fileID: 1479681226}
   - {fileID: 1678762613}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1741,6 +1774,24 @@ MonoBehaviour:
   moveAction: {fileID: -2862659011131131918, guid: fa75a9d0cef467f4a9066b821f381bbe, type: 3}
   lookAction: {fileID: 801235950624054376, guid: fa75a9d0cef467f4a9066b821f381bbe, type: 3}
   moveSpeed: 4
+--- !u!114 &1867700941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1867700933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14b1816d15016454b974d8f8aa914fab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerShooting
+  shootAction: {fileID: -5493511989004984119, guid: fa75a9d0cef467f4a9066b821f381bbe, type: 3}
+  bulletSpawnPoint: {fileID: 1479681226}
+  shotForce: 10
+  baseBullet: {fileID: 3742336889899898999, guid: 731bfc6cd42cec34fb1b1b99340df3fe, type: 3}
+  shootSpeed: 0.2
+  canShoot: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
