@@ -12,13 +12,12 @@ public class PlayerShooting : MonoBehaviour
     [Header("Bullet Setup")]
     public float shotForce = 10;
     [SerializeField] Rigidbody baseBullet;
+    //private BulletSpawner bulletSpawner; //Not working yet
     
     [Header("Set Shoot Timing")]
     public float shootSpeed = 0.2f;
     public bool canShoot;
     public bool currentlyShooting = false;
-
-    
 
     private void OnEnable()
     {
@@ -38,6 +37,7 @@ public class PlayerShooting : MonoBehaviour
     void Awake()
     {
         canShoot = true;
+        //bulletSpawner = FindAnyObjectByType<BulletSpawner>();
     }
     private void FixedUpdate()
     {
@@ -50,7 +50,8 @@ public class PlayerShooting : MonoBehaviour
         canShoot = false;
         Rigidbody shot;
 
-        shot = Instantiate(baseBullet, bulletSpawnPoint.position, bulletSpawnPoint.rotation) as Rigidbody;
+        //shot = bulletSpawner.bulletPool.Get().GetComponent<Rigidbody>();
+        shot = Instantiate(baseBullet, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
         shot.AddForce(bulletSpawnPoint.forward * shotForce, ForceMode.Impulse);
 
         yield return new WaitForSeconds(shootSpeed);
@@ -60,7 +61,6 @@ public class PlayerShooting : MonoBehaviour
     void OnShootPerformed(InputAction.CallbackContext context)
     {
         currentlyShooting = true;
-        
     }
 
     void OnShootCancelled(InputAction.CallbackContext context)
