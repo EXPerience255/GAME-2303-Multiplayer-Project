@@ -16,26 +16,32 @@ public class PlayerShooting : MonoBehaviour
     [Header("Set Shoot Timing")]
     public float shootSpeed = 0.2f;
     public bool canShoot;
+    public bool currentlyShooting = false;
 
     
 
     private void OnEnable()
     {
         shootAction.action.Enable();
+
+        shootAction.action.performed += OnShootPerformed;
+        shootAction.action.canceled += OnShootCancelled;
     }
 
     private void OnDisable()
     {
         shootAction.action.Disable();
+
+        shootAction.action.performed -= OnShootPerformed;
+        shootAction.action.canceled -= OnShootCancelled;
     }
     void Awake()
     {
         canShoot = true;
     }
-
-    void Update()
+    private void FixedUpdate()
     {
-        if (shootAction.action.IsPressed() && canShoot)
+        if (canShoot && currentlyShooting)
             StartCoroutine(PlayerShoot());
     }
 
@@ -49,5 +55,16 @@ public class PlayerShooting : MonoBehaviour
 
         yield return new WaitForSeconds(shootSpeed);
         canShoot = true;
+    }
+
+    void OnShootPerformed(InputAction.CallbackContext context)
+    {
+        currentlyShooting = true;
+        
+    }
+
+    void OnShootCancelled(InputAction.CallbackContext context)
+    {
+        currentlyShooting = false;
     }
 }

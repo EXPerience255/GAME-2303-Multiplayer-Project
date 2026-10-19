@@ -10,16 +10,32 @@ public class PlayerMovement : MonoBehaviour
 
     public float moveSpeed = 4f;
 
+    private Vector3 moveInput;
+    private Vector2 lookInput;
+
     private void OnEnable()
     {
         moveAction.action.Enable();
         lookAction.action.Enable();
+
+        // Use performed and canceled for continuous movement tracking
+        moveAction.action.performed += OnMovePerformed;
+        moveAction.action.canceled += OnMoveCanceled;
+
+        lookAction.action.performed += OnLookPerformed;
     }
 
     private void OnDisable()
     {
         moveAction.action.Disable();
         lookAction.action.Disable();
+
+        // Use performed and canceled for continuous movement tracking
+        moveAction.action.performed -= OnMovePerformed;
+        moveAction.action.canceled -= OnMoveCanceled;
+
+        // Use started or performed for one-shot triggers like jumping
+        lookAction.action.performed -= OnLookPerformed;
     }
 
     private void Awake()
@@ -29,18 +45,37 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // Read move input
-        Vector2 moveInput = moveAction.action.ReadValue<Vector2>();
-        Vector3 move = new Vector3(moveInput.x, 0, moveInput.y);
-        move = Vector3.ClampMagnitude(move, 1f);
+        Move(moveInput);
+    }
 
+    void Move(Vector3 move)
+    {
         charCon.Move(move * moveSpeed * Time.deltaTime);
+    }
+    void LookAt(Vector3 lookPoint)
+    {
+        Vector3 heightCorrectedPoint = new Vector3(lookPoint.x,
+            transform.position.y, lookPoint.z);
+        transform.LookAt(heightCorrectedPoint); //This LookAt is a function within the Transform class, it is NOT the same as this function here
+    }
 
-        /*if (move != Vector3.zero)
-            transform.forward = move;*/
+    private void OnMovePerformed(InputAction.CallbackContext context)
+    {
+        // Read move input
+        moveInput = moveAction.action.ReadValue<Vector2>();
+        moveInput = new Vector3(moveInput.x, 0, moveInput.y);
+        moveInput = Vector3.ClampMagnitude(moveInput, 1f);
+    }
 
+    private void OnMoveCanceled(InputAction.CallbackContext context)
+    {
+        moveInput = Vector2.zero;
+    }
+
+    private void OnLookPerformed(InputAction.CallbackContext context)
+    {
         // Read look input
-        Vector2 lookInput = lookAction.action.ReadValue<Vector2>();
+        lookInput = lookAction.action.ReadValue<Vector2>();
 
         // This uses a Raycast from the cursor onto the surface(floor/ground) to create a vector to the player.
         Ray ray = Camera.main.ScreenPointToRay(lookInput);
@@ -53,13 +88,5 @@ public class PlayerMovement : MonoBehaviour
             Vector3 point = ray.GetPoint(rayDistance);
             LookAt(point);
         }
-
-
-    }
-    void LookAt(Vector3 lookPoint)
-    {
-        Vector3 heightCorrectedPoint = new Vector3(lookPoint.x,
-            transform.position.y, lookPoint.z);
-        transform.LookAt(heightCorrectedPoint); //This LookAt is a function within the Transform class, it is NOT the same as this function here
     }
 }
