@@ -17,8 +17,8 @@ public class BulletSpawner : MonoBehaviour
             actionOnRelease: OnReleaseBullet,  // What to do when an item returns to the pool
             actionOnDestroy: OnDestroyBullet,  // What to do if the pool overflows past MaxSize
             collectionCheck: true,             // Throws errors if you try to return an item already in the pool
-            defaultCapacity: 20,               // Initial array size allocation
-            maxSize: 100                       // Absolute limit of items allowed to live in memory
+            defaultCapacity: 75,               // Initial array size allocation
+            maxSize: 75                       // Absolute limit of items allowed to live in memory
         );
     }
 
@@ -34,6 +34,8 @@ public class BulletSpawner : MonoBehaviour
     private void OnGetBullet(Bullet bullet)
     {
         bullet.gameObject.SetActive(true); // Turn it on
+        bullet.gameObject.transform.position = firePoint.position; // Set it's position and rotation
+        bullet.gameObject.transform.rotation = firePoint.rotation;
     }
 
     private void OnReleaseBullet(Bullet bullet)
