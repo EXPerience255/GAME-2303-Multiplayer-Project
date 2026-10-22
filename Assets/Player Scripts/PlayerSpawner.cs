@@ -3,10 +3,10 @@ using UnityEngine;
 
 public class PlayerSpawner : NetworkBehaviour
 {
-    LobbyPlayer player;
+    NetworkHud Network;
     void Start()
     {
-        player = FindAnyObjectByType<LobbyPlayer>();
-        player.TellServerToSpawnPlayersRpc();
+        Network = FindAnyObjectByType<NetworkHud>();
+        Network.TellServerToSpawnPlayersRpc();
     }
 }

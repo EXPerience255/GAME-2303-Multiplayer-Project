@@ -6,8 +6,6 @@ public class LobbyPlayer : NetworkBehaviour
 {
     ulong clientID;
     Material myColor; //Color of the player
-    Transform spawnPoint; //Where the player will spawn in the main game
-    string[] spawnPointTag = { "SpawnPoint0", "SpawnPoint1", "SpawnPoint2", "SpawnPoint3" }; //The four spawn points need to have these tags
     public Material[] playerColors; //List of player colors to choose from
     GameObject body; //The player
 
@@ -43,22 +41,6 @@ public class LobbyPlayer : NetworkBehaviour
         }
     }
 
+   
 
-    [Rpc(SendTo.Server)]
-    public void TellServerToSpawnPlayersRpc()
-    {
-        SpawnPlayerRpc();
-    }
-
-    [Rpc(SendTo.ClientsAndHost)]
-    public void SpawnPlayerRpc()
-    {
-        if (SceneManager.GetActiveScene().buildIndex == 1) //Main game NEEDS to be Build Index 1
-        {
-            spawnPoint = GameObject.FindWithTag(spawnPointTag[clientID]).GetComponent<Transform>();
-            transform.position = spawnPoint.position;
-            body.SetActive(true);
-            body.GetComponent<MeshRenderer>().material = myColor;
-        }
-    }
 }
