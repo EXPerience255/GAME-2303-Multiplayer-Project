@@ -2,8 +2,16 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!78 &1
 TagManager:
-  serializedVersion: 2
-  tags: []
+  serializedVersion: 3
+  tags:
+  - Player1Text
+  - Player2Text
+  - Player3Text
+  - Player4Text
+  - SpawnPoint0
+  - SpawnPoint1
+  - SpawnPoint2
+  - SpawnPoint3
   layers:
   - Default
   - TransparentFX
@@ -50,27 +58,3 @@ TagManager:
   - Light Layer 5
   - Light Layer 6
   - Light Layer 7
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 

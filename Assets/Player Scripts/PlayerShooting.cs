@@ -1,8 +1,9 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
+using Unity.Netcode;
 
-public class PlayerShooting : MonoBehaviour
+public class PlayerShooting : NetworkBehaviour
 {
     public InputActionReference shootAction;
 
@@ -12,7 +13,7 @@ public class PlayerShooting : MonoBehaviour
     [Header("Bullet Setup")]
     public float shotForce = 10;
     [SerializeField] Rigidbody baseBullet;
-    //private BulletSpawner bulletSpawner; //Not working yet
+    private BulletSpawner bulletSpawner; //Not working yet
     
     [Header("Set Shoot Timing")]
     public float shootSpeed = 0.2f;
@@ -37,7 +38,7 @@ public class PlayerShooting : MonoBehaviour
     void Awake()
     {
         canShoot = true;
-        //bulletSpawner = FindAnyObjectByType<BulletSpawner>();
+        bulletSpawner = FindAnyObjectByType<BulletSpawner>();
     }
     private void FixedUpdate()
     {
@@ -50,8 +51,8 @@ public class PlayerShooting : MonoBehaviour
         canShoot = false;
         Rigidbody shot;
 
-        //shot = bulletSpawner.bulletPool.Get().GetComponent<Rigidbody>();
-        shot = Instantiate(baseBullet, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
+        shot = bulletSpawner.bulletPool.Get().GetComponent<Rigidbody>();
+        //shot = Instantiate(baseBullet, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
         shot.AddForce(bulletSpawnPoint.forward * shotForce, ForceMode.Impulse);
 
         yield return new WaitForSeconds(shootSpeed);
