@@ -4,10 +4,6 @@
 TagManager:
   serializedVersion: 3
   tags:
-  - Player1Text
-  - Player2Text
-  - Player3Text
-  - Player4Text
   - SpawnPoint0
   - SpawnPoint1
   - SpawnPoint2

@@ -3,11 +3,13 @@ using TMPro;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 public class NetworkHud : NetworkBehaviour
 {
 
     [SerializeField] GameObject[] playerTexts; //Text and Images for each player in the lobby screen
+    public Dictionary<ulong, GameObject> playerDictionary = new Dictionary<ulong, GameObject>(); //This ties the clientID ulongs to the respective gameobject.
 
     public void StartHost()
     {
@@ -50,11 +52,11 @@ public class NetworkHud : NetworkBehaviour
     [Rpc(SendTo.ClientsAndHost)]
     private void UpdateTextClientRpc(ulong clientID)
     {
-        for (int x = (int)clientID; x > -1; x--)
+        for (int x = (int)clientID; x > -1; x--) //ulongs can't be negative //This updates ALL the text that came before the current player joining.
         {
             Material color = FindAnyObjectByType<LobbyPlayer>().playerColors[x];
             GameObject playerText = playerTexts[x];
-            playerText.GetComponent<TextMeshProUGUI>().text = "Player " + (x + 1) + " has connected";
+            playerText.GetComponent<TextMeshProUGUI>().text = "Player " + (x + 1) + " has connected"; //GetComponent<Text> is incorrect
             Image imageInPlayerText = playerText.transform.GetChild(0).GetComponent<Image>(); //Image in the lobby screen
             imageInPlayerText.gameObject.SetActive(true);
             imageInPlayerText.color = color.color; //Need to change the color of the image, not the material (the material is also used for the player color)

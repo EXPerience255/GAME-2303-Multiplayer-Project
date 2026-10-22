@@ -38,12 +38,15 @@ public class PlayerShooting : NetworkBehaviour
     void Awake()
     {
         canShoot = true;
-        bulletSpawner = FindAnyObjectByType<BulletSpawner>();
+        //bulletSpawner = FindAnyObjectByType<BulletSpawner>();
     }
     private void FixedUpdate()
     {
-        if (canShoot && currentlyShooting)
-            StartCoroutine(PlayerShoot());
+        if (IsLocalPlayer)
+        {
+            if (canShoot && currentlyShooting)
+                StartCoroutine(PlayerShoot());
+        }
     }
 
     IEnumerator PlayerShoot()
@@ -51,8 +54,8 @@ public class PlayerShooting : NetworkBehaviour
         canShoot = false;
         Rigidbody shot;
 
-        shot = bulletSpawner.bulletPool.Get().GetComponent<Rigidbody>();
-        //shot = Instantiate(baseBullet, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
+        //shot = bulletSpawner.bulletPool.Get().GetComponent<Rigidbody>();
+        shot = Instantiate(baseBullet, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
         shot.AddForce(bulletSpawnPoint.forward * shotForce, ForceMode.Impulse);
 
         yield return new WaitForSeconds(shootSpeed);
