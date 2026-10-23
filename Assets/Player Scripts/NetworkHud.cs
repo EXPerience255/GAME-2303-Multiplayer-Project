@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using TMPro;
+using Unity.Cinemachine;
 using Unity.Netcode;
-using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -33,13 +33,13 @@ public class NetworkHud : NetworkBehaviour
         if (!IsServer) return;
 
         // Use LoadSceneMode.Single to close the old scene and load the new one
-        SceneEventProgressStatus status = NetworkManager.SceneManager.LoadScene("MainGame", LoadSceneMode.Single);
+        SceneEventProgressStatus status = NetworkManager.Singleton.SceneManager.LoadScene("MainGame", LoadSceneMode.Single);
 
         if (status != SceneEventProgressStatus.Started)
         {
             Debug.LogWarning($"Failed to load scene with status: {status}");
         }
-        
+
     }
 
     public void RequestUpdateText(ulong clientID)
@@ -81,15 +81,48 @@ public class NetworkHud : NetworkBehaviour
     {
         if (SceneManager.GetActiveScene().buildIndex == 1) //Main game NEEDS to be Build Index 1
         {
-            foreach (ulong id in playerDictionary.Keys) //Host is running this twice for some reason
+            foreach (ulong id in playerDictionary.Keys) //This moves each player to each spawn point, and assigns them their color.
             {
                 Debug.Log(id + ", " + NetworkManager.Singleton.LocalClientId);
                 Transform spawnPoint = GameObject.FindWithTag(spawnPointTag[id]).GetComponent<Transform>();
                 GameObject body = playerDictionary[id].transform.GetChild(0).gameObject;
                 playerDictionary[id].transform.position = spawnPoint.position;
                 body.SetActive(true);
+                if (id == NetworkManager.Singleton.LocalClientId) //This makes each player only worry about their own camera as there's four cameras per client technically.
+                {
+                    CinemachineCamera playerCam = body.GetComponentInChildren<CinemachineCamera>();
+                    playerCam.Priority = 1;
+                }
                 body.GetComponent<MeshRenderer>().material = playerDictionary[id].GetComponent<LobbyPlayer>().playerColors[id];
+
             }
         }
+    }
+
+    [Rpc(SendTo.Server)]
+    public void RequestUpdateDictionaryRpc(ulong id)
+    {
+        UpdateDictionaryRpc(id);
+    }
+
+    [Rpc(SendTo.ClientsAndHost)]
+    private void UpdateDictionaryRpc(ulong id)
+    {
+        GameObject player = GetPlayerObjectById(id);
+        if (player != null)
+        {
+            playerDictionary.Add(id, player);
+        }
+    }
+
+    public GameObject GetPlayerObjectById(ulong clientId) //This returns the GameObject tied to the local client ID, it makes the playerDictionary redundant, but things might break if you remove it. Found using Gemini :/
+    {
+        // Note: ConnectedClients is only available on the Server/Host by default.
+        // On a pure client, use NetworkManager.Singleton.LocalClient instead.
+        if (NetworkManager.Singleton.ConnectedClients.TryGetValue(clientId, out var networkClient))
+        {
+            return networkClient.PlayerObject?.gameObject;
+        }
+        return null;
     }
 }

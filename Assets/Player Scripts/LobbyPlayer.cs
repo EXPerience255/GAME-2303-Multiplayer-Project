@@ -36,7 +36,8 @@ public class LobbyPlayer : NetworkBehaviour
                 myColor = playerColors[clientID];
                 NetworkHud Network = FindAnyObjectByType<NetworkHud>();
                 Network.RequestUpdateText(clientID);
-                Network.playerDictionary.Add(clientID, gameObject);
+                //Network.playerDictionary.Add(clientID, gameObject);
+                Network.RequestUpdateDictionaryRpc(clientID);
             }
         }
     }
