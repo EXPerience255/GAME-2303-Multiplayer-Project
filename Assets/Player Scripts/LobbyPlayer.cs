@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 using System.Collections;
 public class LobbyPlayer : NetworkBehaviour
 {
-    ulong clientID;
+    public ulong clientID;
     Material myColor; //Color of the player
     public Material[] playerColors; //List of player colors to choose from
     GameObject body; //The player
@@ -37,7 +37,7 @@ public class LobbyPlayer : NetworkBehaviour
                 NetworkHud Network = FindAnyObjectByType<NetworkHud>();
                 Network.RequestUpdateText(clientID);
                 //Network.playerDictionary.Add(clientID, gameObject);
-                Network.RequestUpdateDictionaryRpc(clientID);
+                Network.RequestUpdateClientIdRpc(clientID);
             }
         }
     }

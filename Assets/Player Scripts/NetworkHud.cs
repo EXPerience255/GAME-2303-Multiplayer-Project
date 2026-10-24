@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using TMPro;
 using Unity.Cinemachine;
 using Unity.Netcode;
@@ -10,7 +9,8 @@ public class NetworkHud : NetworkBehaviour
 {
 
     [SerializeField] GameObject[] playerTexts; //Text and Images for each player in the lobby screen
-    public Dictionary<ulong, GameObject> playerDictionary = new Dictionary<ulong, GameObject>(); //This ties the clientID ulongs to the respective gameobject.
+    NetworkVariable<ulong> clientIDs = new NetworkVariable<ulong>();
+    //No longer used //public Dictionary<ulong, GameObject> playerDictionary = new Dictionary<ulong, GameObject>(); //This ties the clientID ulongs to the respective gameobject.
     string[] spawnPointTag = { "SpawnPoint0", "SpawnPoint1", "SpawnPoint2", "SpawnPoint3" }; //The four spawn points need to have these tags
 
     private void Awake()
@@ -81,7 +81,20 @@ public class NetworkHud : NetworkBehaviour
     {
         if (SceneManager.GetActiveScene().buildIndex == 1) //Main game NEEDS to be Build Index 1
         {
-            foreach (ulong id in playerDictionary.Keys) //This moves each player to each spawn point, and assigns them their color.
+            for (ulong id = clientIDs.Value; id > 0; id--)
+            {
+                Transform spawnPoint = GameObject.FindWithTag(spawnPointTag[id - 1]).GetComponent<Transform>();
+                GameObject body = GetPlayerObjectById(id - 1).transform.GetChild(0).gameObject;
+                GetPlayerObjectById(id - 1).transform.position = spawnPoint.position;
+                body.SetActive(true);
+                if (id - 1 == NetworkManager.Singleton.LocalClientId) //This makes each player only worry about their own camera as there's four cameras per client technically.
+                {
+                    CinemachineCamera playerCam = body.GetComponentInChildren<CinemachineCamera>();
+                    playerCam.Priority = 1;
+                }
+                body.GetComponent<MeshRenderer>().material = GetPlayerObjectById(id - 1).GetComponent<LobbyPlayer>().playerColors[id - 1];
+            }
+            /*foreach (ulong id in playerDictionary.Keys) //This moves each player to each spawn point, and assigns them their color.
             {
                 Debug.Log(id + ", " + NetworkManager.Singleton.LocalClientId);
                 Transform spawnPoint = GameObject.FindWithTag(spawnPointTag[id]).GetComponent<Transform>();
@@ -93,26 +106,16 @@ public class NetworkHud : NetworkBehaviour
                     CinemachineCamera playerCam = body.GetComponentInChildren<CinemachineCamera>();
                     playerCam.Priority = 1;
                 }
-                body.GetComponent<MeshRenderer>().material = playerDictionary[id].GetComponent<LobbyPlayer>().playerColors[id];
-
-            }
+                body.GetComponent<MeshRenderer>().material = GetPlayerObjectById(id).GetComponent<LobbyPlayer>().playerColors[id];
+            
+            }*/
         }
     }
 
     [Rpc(SendTo.Server)]
-    public void RequestUpdateDictionaryRpc(ulong id)
+    public void RequestUpdateClientIdRpc(ulong id)
     {
-        UpdateDictionaryRpc(id);
-    }
-
-    [Rpc(SendTo.ClientsAndHost)]
-    private void UpdateDictionaryRpc(ulong id)
-    {
-        GameObject player = GetPlayerObjectById(id);
-        if (player != null)
-        {
-            playerDictionary.Add(id, player);
-        }
+        clientIDs.Value++;
     }
 
     public GameObject GetPlayerObjectById(ulong clientId) //This returns the GameObject tied to the local client ID, it makes the playerDictionary redundant, but things might break if you remove it. Found using Gemini :/
@@ -121,7 +124,7 @@ public class NetworkHud : NetworkBehaviour
         // On a pure client, use NetworkManager.Singleton.LocalClient instead.
         if (NetworkManager.Singleton.ConnectedClients.TryGetValue(clientId, out var networkClient))
         {
-            return networkClient.PlayerObject?.gameObject;
+            return networkClient.PlayerObject.gameObject;
         }
         return null;
     }
