@@ -12,8 +12,7 @@ public class PlayerShooting : NetworkBehaviour
 
     [Header("Bullet Setup")]
     public float shotForce = 10;
-    [SerializeField] Rigidbody baseBullet;
-    private BulletSpawner bulletSpawner; //Not working yet
+    [SerializeField] NetworkObject baseBullet; //Used to be Rigidbody, but bullets weren't moving in multiplayer
     
     [Header("Set Shoot Timing")]
     public float shootSpeed = 0.2f;
@@ -38,7 +37,6 @@ public class PlayerShooting : NetworkBehaviour
     void Awake()
     {
         canShoot = true;
-        //bulletSpawner = FindAnyObjectByType<BulletSpawner>();
     }
     private void FixedUpdate()
     {
@@ -52,14 +50,26 @@ public class PlayerShooting : NetworkBehaviour
     IEnumerator PlayerShoot()
     {
         canShoot = false;
-        Rigidbody shot;
+        /*Rigidbody shot;
 
-        //shot = bulletSpawner.bulletPool.Get().GetComponent<Rigidbody>();
         shot = Instantiate(baseBullet, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
-        shot.AddForce(bulletSpawnPoint.forward * shotForce, ForceMode.Impulse);
+        shot.AddForce(bulletSpawnPoint.forward * shotForce, ForceMode.Impulse);*/
+        ShootServerRpc();
 
         yield return new WaitForSeconds(shootSpeed);
         canShoot = true;
+    }
+
+    [Rpc(SendTo.Server)]
+    private void ShootServerRpc() //Only server can spawn NetworkObjects
+    {
+        /*Rigidbody shot;
+        shot = Instantiate(baseBullet, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
+        shot.AddForce(bulletSpawnPoint.forward * shotForce, ForceMode.Impulse);*/
+
+        NetworkObject bullet = Instantiate(baseBullet, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
+        bullet.Spawn();
+        bullet.GetComponent<Rigidbody>().AddForce(bulletSpawnPoint.forward * shotForce, ForceMode.Impulse);
     }
 
     void OnShootPerformed(InputAction.CallbackContext context)

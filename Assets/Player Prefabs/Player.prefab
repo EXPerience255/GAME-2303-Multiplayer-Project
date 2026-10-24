@@ -137,6 +137,7 @@ GameObject:
   - component: {fileID: 2802509222948811127}
   - component: {fileID: 5725805123095635812}
   - component: {fileID: 2521434525010095010}
+  - component: {fileID: 6138314361734294095}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -252,6 +253,20 @@ MonoBehaviour:
   SwitchTransformSpaceWhenParented: 0
   Interpolate: 1
   SlerpPosition: 0
+--- !u!114 &6138314361734294095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1832760292107146018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0db40ed3f48a36f44a05e61b97cdaa51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
+  ShowTopMostFoldoutHeaderGroup: 1
+  healthStat: {fileID: 11400000, guid: 54ba5f4c47208b4419f0712ec26009b5, type: 2}
 --- !u!1 &3993058287249532553
 GameObject:
   m_ObjectHideFlags: 0
@@ -583,7 +598,7 @@ MonoBehaviour:
   shootAction: {fileID: -5493511989004984119, guid: fa75a9d0cef467f4a9066b821f381bbe, type: 3}
   bulletSpawnPoint: {fileID: 6518937063403933593}
   shotForce: 10
-  baseBullet: {fileID: 3742336889899898999, guid: 731bfc6cd42cec34fb1b1b99340df3fe, type: 3}
+  baseBullet: {fileID: 6631598257362698901, guid: 731bfc6cd42cec34fb1b1b99340df3fe, type: 3}
   shootSpeed: 0.2
   canShoot: 0
   currentlyShooting: 0
