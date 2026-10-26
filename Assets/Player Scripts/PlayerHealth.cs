@@ -20,10 +20,32 @@ public class PlayerHealth : NetworkBehaviour
     [Rpc(SendTo.ClientsAndHost)]
     private void TakeDamageClientRpc(int damage, ulong clientID)
     {
-        if (GetComponentInParent<LobbyPlayer>().clientID == clientID) //Damage is only dealt to the client that took damage.
+        if (IsLocalPlayer)
         {
-            health -= damage;
-            Debug.Log("Ow");
+            if (GetComponentInParent<LobbyPlayer>().clientID == clientID) //Damage is only dealt to the client that took damage.
+            {
+                health -= damage;
+                Debug.Log("Ow");
+                if (health <= 0)
+                    DieServerRpc(clientID);
+            }
+        }
+        
+    }
+
+    [Rpc(SendTo.Server)]
+    private void DieServerRpc(ulong clientID)
+    {
+        DieClientRpc(clientID);
+    }
+
+    [Rpc(SendTo.ClientsAndHost)]
+    private void DieClientRpc(ulong clientID)
+    {
+        if(GetComponentInParent<LobbyPlayer>().clientID == clientID)
+        {
+            Debug.Log("Ded");
+            gameObject.SetActive(false);
         }
     }
 }
