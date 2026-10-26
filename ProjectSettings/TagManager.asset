@@ -8,11 +8,14 @@ TagManager:
   - SpawnPoint1
   - SpawnPoint2
   - SpawnPoint3
+  - EnemySpawn
+  - PlayerSpawn
+  - Enemy
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
   - 
