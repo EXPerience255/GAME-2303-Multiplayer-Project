@@ -349,7 +349,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 1229265610
+  GlobalObjectIdHash: 2593569269
   InScenePlacedSourceGlobalObjectIdHash: 0
   m_InScenePlacedDisabledByDefault: 0
   DeferredDespawnTick: 0
@@ -720,7 +720,6 @@ MonoBehaviour:
   dialSmoothSpeed: 5
   health: {fileID: 891056740467202299}
   experience: {fileID: 3115904549983027148}
-  hudCarrier: {fileID: 0}
   experienceDial: {fileID: 4340843905079621662}
   healthDial: {fileID: 3720441083060687680}
 --- !u!1 &6711184944811369158
@@ -1045,7 +1044,6 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   maxHealth: 10
   health: 0
-  invincibilityTime: 0.05
 --- !u!1001 &5157971698800822958
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1138,6 +1136,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UpgradeCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 8311858546977838343, guid: 910cbad47dc260747a65029fca11edff, type: 3}
+      propertyPath: health
+      value: 
+      objectReference: {fileID: 891056740467202299}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -13,6 +13,7 @@ public class UpgradeManager : NetworkBehaviour
 
     [Header("Panel")]
     public RectTransform upgradePanel;
+    [SerializeField] HealButton heal;
     [SerializeField] float panelMoveSpeed;
 
     [Header("EXP System")]
@@ -66,24 +67,29 @@ public class UpgradeManager : NetworkBehaviour
         }
     }
 
+    public void GainExp(float gain = 1)
+    {
+        experience += gain;
+    }
+
     private void PurchaseTopUpgrade(InputAction.CallbackContext context)
     {
-        if (!IsLocalPlayer) return;
-
-        upgradeCount++;
+        if (!IsLocalPlayer || upgradeCount <= 0) return;
     }
 
     private void PurchaseBottomUpgrade(InputAction.CallbackContext context)
     {
-        if (!IsLocalPlayer) return;
-
-        upgradeCount--;
+        if (!IsLocalPlayer || upgradeCount <= 0) return;
     }
 
     private void PurchaseHeal(InputAction.CallbackContext context)
     {
-        if (!IsLocalPlayer) return;
+        if (!IsLocalPlayer || upgradeCount <= 0) return;
+        DoHeal();
+    }
 
-        experience++;
+    public void DoHeal()
+    {
+        heal.Heal();
     }
 }
