@@ -137,7 +137,6 @@ GameObject:
   - component: {fileID: 2802509222948811127}
   - component: {fileID: 5725805123095635812}
   - component: {fileID: 2521434525010095010}
-  - component: {fileID: 6138314361734294095}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -173,7 +172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 2593569269
+  GlobalObjectIdHash: 1229265610
   InScenePlacedSourceGlobalObjectIdHash: 0
   m_InScenePlacedDisabledByDefault: 0
   DeferredDespawnTick: 0
@@ -253,20 +252,6 @@ MonoBehaviour:
   SwitchTransformSpaceWhenParented: 0
   Interpolate: 1
   SlerpPosition: 0
---- !u!114 &6138314361734294095
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1832760292107146018}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0db40ed3f48a36f44a05e61b97cdaa51, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
-  ShowTopMostFoldoutHeaderGroup: 1
-  healthStat: {fileID: 11400000, guid: 54ba5f4c47208b4419f0712ec26009b5, type: 2}
 --- !u!1 &3993058287249532553
 GameObject:
   m_ObjectHideFlags: 0
@@ -435,6 +420,7 @@ GameObject:
   - component: {fileID: 3267949335619971393}
   - component: {fileID: 6439752220818988713}
   - component: {fileID: 6978966720316567543}
+  - component: {fileID: 891056740467202299}
   m_Layer: 0
   m_Name: PlayerBody
   m_TagString: Untagged
@@ -648,3 +634,17 @@ MonoBehaviour:
   SwitchTransformSpaceWhenParented: 0
   Interpolate: 1
   SlerpPosition: 0
+--- !u!114 &891056740467202299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8346414661658745181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0db40ed3f48a36f44a05e61b97cdaa51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
+  ShowTopMostFoldoutHeaderGroup: 1
+  healthStat: {fileID: 11400000, guid: 54ba5f4c47208b4419f0712ec26009b5, type: 2}
