@@ -86,7 +86,7 @@ public class NetworkHud : NetworkBehaviour
                 Debug.Log("note");
                 Transform spawnPoint = GameObject.FindWithTag(spawnPointTag[id - 1]).GetComponent<Transform>();
                 GameObject body = GetPlayerObjectById(id - 1).transform.GetChild(0).gameObject;
-                GetPlayerObjectById(id - 1).transform.position = spawnPoint.position;
+                GetPlayerObjectById(id - 1).transform.position = spawnPoint.position + new Vector3(0, 1, 0);
                 body.SetActive(true);
                 if (id - 1 == NetworkManager.Singleton.LocalClientId) //This makes each player only worry about their own camera as there's four cameras per client technically.
                 {
