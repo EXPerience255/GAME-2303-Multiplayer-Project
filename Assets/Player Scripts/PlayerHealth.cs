@@ -12,15 +12,18 @@ public class PlayerHealth : NetworkBehaviour
     }
 
     [Rpc(SendTo.Server)]
-    public void TakeDamageServerRpc(int damage)
+    public void TakeDamageServerRpc(int damage, ulong clientID)
     {
-        TakeDamageClientRpc(damage);
+        TakeDamageClientRpc(damage, clientID);
     }
 
     [Rpc(SendTo.ClientsAndHost)]
-    private void TakeDamageClientRpc(int damage)
+    private void TakeDamageClientRpc(int damage, ulong clientID)
     {
-        health -= damage;
-        Debug.Log("Ow");
+        if (GetComponentInParent<LobbyPlayer>().clientID == clientID) //Damage is only dealt to the client that took damage.
+        {
+            health -= damage;
+            Debug.Log("Ow");
+        }
     }
 }

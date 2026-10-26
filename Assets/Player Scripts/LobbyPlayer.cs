@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 using System.Collections;
 public class LobbyPlayer : NetworkBehaviour
 {
-    public ulong clientID;
+    public ulong clientID; //IMPORTANT NOTE: For each client, this will tell you every single player has the same ID as itself. (Which actually makes this variable mostly useless) GetComponentInParent<NetworkObject>().OwnerClientId can grab Id's of other game objects.
     Material myColor; //Color of the player
     public Material[] playerColors; //List of player colors to choose from
     GameObject body; //The player

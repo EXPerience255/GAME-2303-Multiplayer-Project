@@ -28,10 +28,11 @@ public class PlayerBullet : NetworkBehaviour
     }*/
 
     private void OnCollisionEnter(Collision other)
-    {
-        if (other.gameObject.GetComponent<PlayerHealth>() && other.gameObject.GetComponentInParent<LobbyPlayer>().clientID != clientID) //If a player isn't getting hit by it's own bullet
+    {                                                               //This checks the client ID of the other game object
+        if (other.gameObject.GetComponent<PlayerHealth>() && other.gameObject.GetComponentInParent<NetworkObject>().OwnerClientId != clientID) //If a player isn't getting hit by it's own bullet
         {
-            other.gameObject.GetComponent<PlayerHealth>().TakeDamageServerRpc(damage);
+            Debug.Log("Collision");
+            other.gameObject.GetComponent<PlayerHealth>().TakeDamageServerRpc(damage, other.gameObject.GetComponentInParent<NetworkObject>().OwnerClientId); //Damage is only dealt to the client that took damage
             DestroyRpc(0f);
         }
     }
