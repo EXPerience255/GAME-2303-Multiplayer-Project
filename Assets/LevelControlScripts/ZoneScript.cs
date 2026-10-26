@@ -56,6 +56,7 @@ public class ZoneScript : MonoBehaviour
         GameObject newEnemey = Instantiate(enemyPrefab, SpawnLocation, Quaternion.identity);
         EnemyBehavior EB = newEnemey.gameObject.GetComponent<EnemyBehavior>();
         EB.currentZone = this;
+        EB.AquireTarget();
     }
 
     void Spawner()
@@ -68,17 +69,17 @@ public class ZoneScript : MonoBehaviour
         }
     }
 
-    public Transform GrabPlayer()
+    public GameObject GrabPlayer()
     {
         if (playersInZone.Count > 0)
         {
             GameObject choosePlayer = playersInZone[Random.Range(0, playersInZone.Count - 1)];
 
-            return choosePlayer.transform;
+            return choosePlayer;
         }
 
         if(FindAnyObjectByType<PlayerHealth>() != null)
-            return NH.GetPlayerObjectById((ulong)Random.Range(0, NH.clientIDs.Value - 1)).transform;
+            return NH.GetPlayerObjectById((ulong)Random.Range(1, NH.clientIDs.Value)-1);
 
         return null;
     }

@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class EnemyBehavior : MonoBehaviour
 {
-    [SerializeField] private Transform _player;
+    [SerializeField] private GameObject _player;
 
     [SerializeField] private float updateInterval = 0.2f;
     [SerializeField] private float updateTimer;
@@ -29,6 +29,7 @@ public class EnemyBehavior : MonoBehaviour
         _agent.stoppingDistance = stoppingDistance;
     }
 
+
     private void Update()
     {
         
@@ -44,7 +45,7 @@ public class EnemyBehavior : MonoBehaviour
 
             updateTimer = updateInterval;
             Vector3 _separation = GetSeperationVector();
-            Vector3 _destination = _player.position + _separation;
+            Vector3 _destination = _player.transform.position + _separation;
             if (NavMesh.SamplePosition(_destination, out NavMeshHit hit, 
                 separationRadius +1, NavMesh.AllAreas))
             {

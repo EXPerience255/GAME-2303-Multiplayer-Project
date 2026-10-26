@@ -79,7 +79,7 @@ public class NetworkHud : NetworkBehaviour
     [Rpc(SendTo.ClientsAndHost)]
     public void SpawnPlayerRpc()
     {
-        if (SceneManager.GetActiveScene().buildIndex == 1) //Main game NEEDS to be Build Index 1
+        if (SceneManager.GetActiveScene().name == "MainLevel") //Main game NEEDS to be Build Index 1
         {
             for (ulong id = clientIDs.Value; id > 0; id--)
             {
