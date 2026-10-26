@@ -27,7 +27,9 @@ public class PlayerHealth : NetworkBehaviour
                 health -= damage;
                 Debug.Log("Ow");
                 if (health <= 0)
+                {
                     DieServerRpc(clientID);
+                }
             }
         }
         
@@ -42,10 +44,6 @@ public class PlayerHealth : NetworkBehaviour
     [Rpc(SendTo.ClientsAndHost)]
     private void DieClientRpc(ulong clientID)
     {
-        if(GetComponentInParent<LobbyPlayer>().clientID == clientID)
-        {
-            Debug.Log("Ded");
-            gameObject.SetActive(false);
-        }
+        FindAnyObjectByType<NetworkHud>().GetPlayerObjectById(clientID).SetActive(false);
     }
 }
