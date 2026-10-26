@@ -29,6 +29,8 @@ public class PlayerShooting : NetworkBehaviour
 
     private void OnDisable()
     {
+        if (!IsLocalPlayer) return;
+
         shootAction.action.Disable();
 
         shootAction.action.performed -= OnShootPerformed;

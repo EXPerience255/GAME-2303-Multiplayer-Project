@@ -27,6 +27,8 @@ public class PlayerMovement : NetworkBehaviour
 
     private void OnDisable()
     {
+        if (!IsLocalPlayer) return;
+
         moveAction.action.Disable();
         lookAction.action.Disable();
 
