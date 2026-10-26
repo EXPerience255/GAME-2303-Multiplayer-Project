@@ -9,7 +9,7 @@ public class NetworkHud : NetworkBehaviour
 {
 
     [SerializeField] GameObject[] playerTexts; //Text and Images for each player in the lobby screen
-    NetworkVariable<ulong> clientIDs = new NetworkVariable<ulong>();
+    public NetworkVariable<ulong> clientIDs = new NetworkVariable<ulong>();
     //No longer used //public Dictionary<ulong, GameObject> playerDictionary = new Dictionary<ulong, GameObject>(); //This ties the clientID ulongs to the respective gameobject.
     string[] spawnPointTag = { "SpawnPoint0", "SpawnPoint1", "SpawnPoint2", "SpawnPoint3" }; //The four spawn points need to have these tags
 
@@ -33,7 +33,7 @@ public class NetworkHud : NetworkBehaviour
         if (!IsServer) return;
 
         // Use LoadSceneMode.Single to close the old scene and load the new one
-        SceneEventProgressStatus status = NetworkManager.Singleton.SceneManager.LoadScene("MainGame", LoadSceneMode.Single);
+        SceneEventProgressStatus status = NetworkManager.Singleton.SceneManager.LoadScene("MainLevel", LoadSceneMode.Single);
 
         if (status != SceneEventProgressStatus.Started)
         {
@@ -83,6 +83,7 @@ public class NetworkHud : NetworkBehaviour
         {
             for (ulong id = clientIDs.Value; id > 0; id--)
             {
+                Debug.Log("note");
                 Transform spawnPoint = GameObject.FindWithTag(spawnPointTag[id - 1]).GetComponent<Transform>();
                 GameObject body = GetPlayerObjectById(id - 1).transform.GetChild(0).gameObject;
                 GetPlayerObjectById(id - 1).transform.position = spawnPoint.position;

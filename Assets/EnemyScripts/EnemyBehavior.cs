@@ -24,15 +24,14 @@ public class EnemyBehavior : MonoBehaviour
     public ZoneScript currentZone;
     private void Awake()
     {
-       
+        
         _agent = GetComponent<NavMeshAgent>();
         _agent.stoppingDistance = stoppingDistance;
     }
 
     private void Update()
     {
-        if(currentZone != null && _player == !_player.gameObject.activeSelf)
-            AquireTarget();
+        
 
         if (_agent == null || !_agent.isOnNavMesh)
             return;
@@ -40,6 +39,9 @@ public class EnemyBehavior : MonoBehaviour
         updateTimer -= Time.deltaTime;
         if (updateTimer <= 0f && _player != null)
         {
+            if (currentZone != null && _player == !_player.gameObject.activeSelf)
+                AquireTarget();
+
             updateTimer = updateInterval;
             Vector3 _separation = GetSeperationVector();
             Vector3 _destination = _player.position + _separation;
