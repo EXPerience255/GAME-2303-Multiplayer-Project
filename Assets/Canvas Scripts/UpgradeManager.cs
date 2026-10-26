@@ -16,6 +16,9 @@ public class UpgradeManager : NetworkBehaviour
     [SerializeField] float panelMoveSpeed;
 
     [Header("EXP System")]
+    public float experience;
+    public float requiredExperience;
+    [SerializeField] float requiredMultiplier;
     public int upgradeCount;
 
     private void OnEnable()
@@ -44,6 +47,15 @@ public class UpgradeManager : NetworkBehaviour
 
     private void Update()
     {
+        if (!IsLocalPlayer) return;
+
+        if (experience >= requiredExperience)
+        {
+            experience -= requiredExperience;
+            requiredExperience *= requiredMultiplier;
+            upgradeCount++;
+        }
+
         if (upgradeCount > 0)
         {
             upgradePanel.anchoredPosition = Vector3.Lerp(upgradePanel.anchoredPosition, new Vector3(-10, 0, 0), Time.deltaTime * panelMoveSpeed);
@@ -72,6 +84,6 @@ public class UpgradeManager : NetworkBehaviour
     {
         if (!IsLocalPlayer) return;
 
-        upgradeCount = 0;
+        experience++;
     }
 }

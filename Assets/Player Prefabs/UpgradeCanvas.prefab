@@ -211,4 +211,7 @@ MonoBehaviour:
   purchaseHeal: {fileID: -550380977263110378, guid: fa75a9d0cef467f4a9066b821f381bbe, type: 3}
   upgradePanel: {fileID: 4718756841721915637}
   panelMoveSpeed: 10
+  experience: 0
+  requiredExperience: 3
+  requiredMultiplier: 2
   upgradeCount: 0
