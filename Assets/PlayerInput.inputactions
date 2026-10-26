@@ -116,6 +116,77 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Upgrade",
+            "id": "c1a02a33-bce0-4500-82a5-5717be05598c",
+            "actions": [
+                {
+                    "name": "TopUpgrade",
+                    "type": "Button",
+                    "id": "e3f0f1f2-a63a-4001-b98a-841d9ddacaab",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                },
+                {
+                    "name": "BottomUpgrade",
+                    "type": "Button",
+                    "id": "d0b7f33e-a439-46ba-98cc-68f91cb5c860",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                },
+                {
+                    "name": "Heal",
+                    "type": "Button",
+                    "id": "37ffe560-3ab2-4d6e-ab50-37374fa5dcbf",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "fe402189-56c6-4879-94f3-cbc97a9867d3",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TopUpgrade",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "644724c7-5659-466a-ba83-688158c7c156",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BottomUpgrade",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "de8cf40f-6cb3-4d5e-b4ef-3f7cb8a4a56b",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Heal",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []
