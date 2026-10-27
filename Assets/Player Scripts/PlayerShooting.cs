@@ -15,7 +15,7 @@ public class PlayerShooting : NetworkBehaviour
     [SerializeField] NetworkObject baseBullet; //Used to be Rigidbody, but bullets weren't moving in multiplayer
     
     [Header("Set Shoot Timing")]
-    public float shootSpeed = 0.2f;
+    public float shootSpeed = 0.99f; // Set it less than 1 so that exponential fire delay upgrades actually do something
     public bool canShoot;
     public bool currentlyShooting = false;
 

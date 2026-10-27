@@ -29,6 +29,7 @@ public class UpgradeManager : NetworkBehaviour
     [SerializeField] UpgradeSpawner spawner;
     [SerializeField] PlayerHealth health;
     [SerializeField] PlayerMovement movement;
+    [SerializeField] PlayerShooting shooting;
 
     [Header("Debug")]
     [SerializeField] bool isDebug;
@@ -181,6 +182,30 @@ public class UpgradeManager : NetworkBehaviour
     public void MoveSpeedExponential()
     {
         movement.moveSpeed = Mathf.Pow(movement.moveSpeed, 1.05f);
+        CommonUpgradeCleanup();
+    }
+
+    // Fire Delay
+    /*
+    Note: Rarity order is reversed for this upgrade type due to addition (technically subtraction, but still) 
+          is the strongest operation for going down, and shootSpeed gets better the lower it is.
+    */
+    public void FireDelayAdditive()
+    {
+        shooting.shootSpeed -= 0.05f;
+        if (shooting.shootSpeed < 0.01f) shooting.shootSpeed = 0.01f;
+        CommonUpgradeCleanup();
+    }
+    public void FireDelayMultiplicative()
+    {
+        shooting.shootSpeed *= 0.9f;
+        if (shooting.shootSpeed < 0.01f) shooting.shootSpeed = 0.01f;
+        CommonUpgradeCleanup();
+    }
+    public void FireDelayExponential()
+    {
+        shooting.shootSpeed = Mathf.Pow(shooting.shootSpeed, 1.12f);
+        if (shooting.shootSpeed < 0.01f) shooting.shootSpeed = 0.01f;
         CommonUpgradeCleanup();
     }
 }
