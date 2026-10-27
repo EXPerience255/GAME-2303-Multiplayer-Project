@@ -15,27 +15,33 @@ public class PlayerMovement : NetworkBehaviour
 
     private void OnEnable()
     {
-        moveAction.action.Enable();
-        lookAction.action.Enable();
+        if (IsLocalPlayer)
+        {
+            moveAction.action.Enable();
+            lookAction.action.Enable();
 
-        // Use performed and canceled for continuous movement tracking
-        moveAction.action.performed += OnMovePerformed;
-        moveAction.action.canceled += OnMoveCanceled;
+            // Use performed and canceled for continuous movement tracking
+            moveAction.action.performed += OnMovePerformed;
+            moveAction.action.canceled += OnMoveCanceled;
 
-        lookAction.action.performed += OnLookPerformed;
+            lookAction.action.performed += OnLookPerformed;
+        }
     }
 
     private void OnDisable()
     {
-        moveAction.action.Disable();
-        lookAction.action.Disable();
+        if (IsLocalPlayer)
+        {
+            moveAction.action.Disable();
+            lookAction.action.Disable();
 
-        // Use performed and canceled for continuous movement tracking
-        moveAction.action.performed -= OnMovePerformed;
-        moveAction.action.canceled -= OnMoveCanceled;
+            // Use performed and canceled for continuous movement tracking
+            moveAction.action.performed -= OnMovePerformed;
+            moveAction.action.canceled -= OnMoveCanceled;
 
-        // Use started or performed for one-shot triggers like jumping
-        lookAction.action.performed -= OnLookPerformed;
+            // Use started or performed for one-shot triggers like jumping
+            lookAction.action.performed -= OnLookPerformed;
+        }
     }
 
     private void Awake()

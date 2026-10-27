@@ -21,18 +21,24 @@ public class PlayerShooting : NetworkBehaviour
 
     private void OnEnable()
     {
-        shootAction.action.Enable();
+        if (IsLocalPlayer)
+        {
+            shootAction.action.Enable();
 
-        shootAction.action.performed += OnShootPerformed;
-        shootAction.action.canceled += OnShootCancelled;
+            shootAction.action.performed += OnShootPerformed;
+            shootAction.action.canceled += OnShootCancelled;
+        }
     }
 
     private void OnDisable()
     {
-        shootAction.action.Disable();
+        if (IsLocalPlayer)
+        {
+            shootAction.action.Disable();
 
-        shootAction.action.performed -= OnShootPerformed;
-        shootAction.action.canceled -= OnShootCancelled;
+            shootAction.action.performed -= OnShootPerformed;
+            shootAction.action.canceled -= OnShootCancelled;
+        }
     }
     void Awake()
     {
