@@ -192,7 +192,7 @@ public class UpgradeManager : NetworkBehaviour
     */
     public void FireDelayAdditive()
     {
-        shooting.shootSpeed -= 0.05f;
+        shooting.shootSpeed -= 0.08f;
         if (shooting.shootSpeed < 0.01f) shooting.shootSpeed = 0.01f;
         CommonUpgradeCleanup();
     }
@@ -204,7 +204,7 @@ public class UpgradeManager : NetworkBehaviour
     }
     public void FireDelayExponential()
     {
-        shooting.shootSpeed = Mathf.Pow(shooting.shootSpeed, 1.12f);
+        shooting.shootSpeed = Mathf.Pow(shooting.shootSpeed, 1.5f);
         if (shooting.shootSpeed < 0.01f) shooting.shootSpeed = 0.01f;
         CommonUpgradeCleanup();
     }
