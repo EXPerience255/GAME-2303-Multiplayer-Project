@@ -5,6 +5,7 @@ using UnityEngine.Events;
 [Serializable]
 public struct Upgrade
 {
+    public int rarity;
     public UnityEvent effect;
     public GameObject button;
 }

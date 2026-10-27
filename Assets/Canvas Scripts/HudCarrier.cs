@@ -1,6 +1,7 @@
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class HudCarrier : NetworkBehaviour
 {
@@ -13,6 +14,7 @@ public class HudCarrier : NetworkBehaviour
     [Header("Object References")]
     [SerializeField] Image experienceDial;
     [SerializeField] Image healthDial;
+    [SerializeField] TMP_Text healthDisplay;
     RectTransform hudCarrier;
 
     private void Awake()
@@ -27,5 +29,7 @@ public class HudCarrier : NetworkBehaviour
 
         experienceDial.fillAmount = Mathf.Lerp(experienceDial.fillAmount, experience.experience / experience.requiredExperience, Time.deltaTime * dialSmoothSpeed);
         healthDial.fillAmount = Mathf.Lerp(healthDial.fillAmount, health.health / health.maxHealth, Time.deltaTime * dialSmoothSpeed);
+
+        healthDisplay.text = Mathf.Round(health.health) + "\n———\n" + Mathf.Round(health.maxHealth);
     }
 }

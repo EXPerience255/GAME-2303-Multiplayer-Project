@@ -14,14 +14,14 @@ public class PlayerHealth : NetworkBehaviour
     }
 
     [Rpc(SendTo.Server)]
-    public void TakeDamageServerRpc(int damage, ulong clientID)
+    public void TakeDamageServerRpc(float damage, ulong clientID)
     {
         if (immune) return;
         TakeDamageClientRpc(damage, clientID);
     }
 
     [Rpc(SendTo.ClientsAndHost)]
-    private void TakeDamageClientRpc(int damage, ulong clientID)
+    private void TakeDamageClientRpc(float damage, ulong clientID)
     {
         if (immune) return;
 
