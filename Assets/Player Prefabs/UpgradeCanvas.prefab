@@ -671,6 +671,59 @@ MonoBehaviour:
               m_BoolArgument: 0
             m_CallState: 2
       button: {fileID: 1958273320074403175, guid: 6903769f8b5aa4f4f8131acdea05703e, type: 3}
+  - name: MoveSpeed
+    upgrades:
+    - rarity: 0
+      effect:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 7829826000875189602}
+            m_TargetAssemblyTypeName: UpgradeManager, Assembly-CSharp
+            m_MethodName: MoveSpeedAdditive
+            m_Mode: 1
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+      button: {fileID: 7576733441935600836, guid: cc666a7c9f8ebef4ba2ba77c9c56987c, type: 3}
+    - rarity: 1
+      effect:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 7829826000875189602}
+            m_TargetAssemblyTypeName: UpgradeManager, Assembly-CSharp
+            m_MethodName: MoveSpeedMultiplicative
+            m_Mode: 1
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+      button: {fileID: 7576733441935600836, guid: 48e01b68d3460b24f9a1788518a3c438, type: 3}
+    - rarity: 2
+      effect:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 7829826000875189602}
+            m_TargetAssemblyTypeName: UpgradeManager, Assembly-CSharp
+            m_MethodName: MoveSpeedExponential
+            m_Mode: 1
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+      button: {fileID: 7576733441935600836, guid: b66aa4df389d5184492e9120a1577395, type: 3}
 --- !u!114 &7829826000875189602
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -697,4 +750,6 @@ MonoBehaviour:
   upgradeCount: 0
   spawner: {fileID: 2437562949493444439}
   health: {fileID: 0}
+  movement: {fileID: 0}
+  isDebug: 1
   gainExp: {fileID: 5784759831282112713, guid: 062092cd9ed3d8d43abd7981adef1cc0, type: 3}

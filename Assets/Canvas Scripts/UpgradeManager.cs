@@ -28,8 +28,10 @@ public class UpgradeManager : NetworkBehaviour
     [Header("Script References")]
     [SerializeField] UpgradeSpawner spawner;
     [SerializeField] PlayerHealth health;
+    [SerializeField] PlayerMovement movement;
 
     [Header("Debug")]
+    [SerializeField] bool isDebug;
     public InputActionReference gainExp;
 
     private void OnEnable()
@@ -91,14 +93,14 @@ public class UpgradeManager : NetworkBehaviour
     {
         for (int i = 0; i < 2; i++)
         {
-            int selectedType = Random.Range(0, upgrades.upgrades.Length - 1);
+            int selectedType = Random.Range(0, upgrades.upgrades.Length);
             shownUpgrades[i] = spawner.SpawnUpgrade(upgrades.upgrades[selectedType], i);
         }
     }
 
     private void GainExpDebug(InputAction.CallbackContext context)
     {
-        GainExp(1);
+        if (isDebug) upgradeCount++;
     }
 
     public void GainExp(float gain = 1)
@@ -162,6 +164,23 @@ public class UpgradeManager : NetworkBehaviour
         float beforeHealth = health.maxHealth;
         health.maxHealth = Mathf.Pow(health.maxHealth, 1.1f);
         health.health += health.maxHealth - beforeHealth;
+        CommonUpgradeCleanup();
+    }
+
+    // Move Speed
+    public void MoveSpeedAdditive()
+    {
+        movement.moveSpeed += 2;
+        CommonUpgradeCleanup();
+    }
+    public void MoveSpeedMultiplicative()
+    {
+        movement.moveSpeed *= 1.2f;
+        CommonUpgradeCleanup();
+    }
+    public void MoveSpeedExponential()
+    {
+        movement.moveSpeed = Mathf.Pow(movement.moveSpeed, 1.05f);
         CommonUpgradeCleanup();
     }
 }
