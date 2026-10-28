@@ -208,4 +208,21 @@ public class UpgradeManager : NetworkBehaviour
         if (shooting.shootSpeed < 0.01f) shooting.shootSpeed = 0.01f;
         CommonUpgradeCleanup();
     }
+
+    // Damage
+    public void DamageAdditive()
+    {
+        shooting.damage += 1f;
+        CommonUpgradeCleanup();
+    }
+    public void DamageMultiplicative()
+    {
+        shooting.damage *= 1.15f;
+        CommonUpgradeCleanup();
+    }
+    public void DamageExponential()
+    {
+        shooting.damage = Mathf.Pow(shooting.damage, 1.05f);
+        CommonUpgradeCleanup();
+    }
 }

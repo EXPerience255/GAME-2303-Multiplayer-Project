@@ -12,6 +12,7 @@ public class PlayerShooting : NetworkBehaviour
 
     [Header("Bullet Setup")]
     public float shotForce = 10;
+    public float damage;
     [SerializeField] NetworkObject baseBullet; //Used to be Rigidbody, but bullets weren't moving in multiplayer
     
     [Header("Set Shoot Timing")]
@@ -71,6 +72,7 @@ public class PlayerShooting : NetworkBehaviour
 
         NetworkObject bullet = Instantiate(baseBullet, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
         bullet.Spawn();
+        bullet.GetComponent<PlayerBullet>().damage = damage;
         bullet.GetComponent<Rigidbody>().AddForce(bulletSpawnPoint.forward * shotForce, ForceMode.Impulse);
     }
 

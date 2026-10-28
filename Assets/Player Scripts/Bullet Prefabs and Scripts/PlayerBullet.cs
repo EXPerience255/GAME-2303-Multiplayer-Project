@@ -3,7 +3,7 @@ using Unity.Netcode;
 public class PlayerBullet : NetworkBehaviour
 {
     ulong clientID;
-    public int damage = 1;
+    public float damage = 1;
     public float killTimer = 2f;
 
     void Start()

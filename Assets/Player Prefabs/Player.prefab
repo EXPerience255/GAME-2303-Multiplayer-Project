@@ -586,6 +586,7 @@ MonoBehaviour:
   shootAction: {fileID: -5493511989004984119, guid: fa75a9d0cef467f4a9066b821f381bbe, type: 3}
   bulletSpawnPoint: {fileID: 6518937063403933593}
   shotForce: 10
+  damage: 1
   baseBullet: {fileID: 6631598257362698901, guid: 731bfc6cd42cec34fb1b1b99340df3fe, type: 3}
   shootSpeed: 0.99
   canShoot: 0
@@ -851,14 +852,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3653831802331841547, guid: 910cbad47dc260747a65029fca11edff, type: 3}
       propertyPath: upgrades.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3653831802331841547, guid: 910cbad47dc260747a65029fca11edff, type: 3}
       propertyPath: upgrades.Array.data[2].name
       value: FireDelay
       objectReference: {fileID: 0}
     - target: {fileID: 3653831802331841547, guid: 910cbad47dc260747a65029fca11edff, type: 3}
+      propertyPath: upgrades.Array.data[3].name
+      value: Damage
+      objectReference: {fileID: 0}
+    - target: {fileID: 3653831802331841547, guid: 910cbad47dc260747a65029fca11edff, type: 3}
       propertyPath: upgrades.Array.data[2].upgrades.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3653831802331841547, guid: 910cbad47dc260747a65029fca11edff, type: 3}
+      propertyPath: upgrades.Array.data[3].upgrades.Array.size
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3653831802331841547, guid: 910cbad47dc260747a65029fca11edff, type: 3}
@@ -882,6 +891,26 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3653831802331841547, guid: 910cbad47dc260747a65029fca11edff, type: 3}
+      propertyPath: upgrades.Array.data[3].upgrades.Array.data[0].button
+      value: 
+      objectReference: {fileID: 7576733441935600836, guid: ca5faafcff322134c9a46aaa5d8eacaf, type: 3}
+    - target: {fileID: 3653831802331841547, guid: 910cbad47dc260747a65029fca11edff, type: 3}
+      propertyPath: upgrades.Array.data[3].upgrades.Array.data[1].button
+      value: 
+      objectReference: {fileID: 7576733441935600836, guid: 2327f33466692764a8baec9c62e2280a, type: 3}
+    - target: {fileID: 3653831802331841547, guid: 910cbad47dc260747a65029fca11edff, type: 3}
+      propertyPath: upgrades.Array.data[3].upgrades.Array.data[1].rarity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3653831802331841547, guid: 910cbad47dc260747a65029fca11edff, type: 3}
+      propertyPath: upgrades.Array.data[3].upgrades.Array.data[2].button
+      value: 
+      objectReference: {fileID: 7576733441935600836, guid: fe5e3bb0b776c9f4fb37e2a91aecfee3, type: 3}
+    - target: {fileID: 3653831802331841547, guid: 910cbad47dc260747a65029fca11edff, type: 3}
+      propertyPath: upgrades.Array.data[3].upgrades.Array.data[2].rarity
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3653831802331841547, guid: 910cbad47dc260747a65029fca11edff, type: 3}
       propertyPath: upgrades.Array.data[2].upgrades.Array.data[0].effect.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -891,6 +920,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3653831802331841547, guid: 910cbad47dc260747a65029fca11edff, type: 3}
       propertyPath: upgrades.Array.data[2].upgrades.Array.data[2].effect.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3653831802331841547, guid: 910cbad47dc260747a65029fca11edff, type: 3}
+      propertyPath: upgrades.Array.data[3].upgrades.Array.data[0].effect.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3653831802331841547, guid: 910cbad47dc260747a65029fca11edff, type: 3}
+      propertyPath: upgrades.Array.data[3].upgrades.Array.data[1].effect.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3653831802331841547, guid: 910cbad47dc260747a65029fca11edff, type: 3}
+      propertyPath: upgrades.Array.data[3].upgrades.Array.data[2].effect.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3653831802331841547, guid: 910cbad47dc260747a65029fca11edff, type: 3}
@@ -906,6 +947,18 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3653831802331841547, guid: 910cbad47dc260747a65029fca11edff, type: 3}
+      propertyPath: upgrades.Array.data[3].upgrades.Array.data[0].effect.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3653831802331841547, guid: 910cbad47dc260747a65029fca11edff, type: 3}
+      propertyPath: upgrades.Array.data[3].upgrades.Array.data[1].effect.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3653831802331841547, guid: 910cbad47dc260747a65029fca11edff, type: 3}
+      propertyPath: upgrades.Array.data[3].upgrades.Array.data[2].effect.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3653831802331841547, guid: 910cbad47dc260747a65029fca11edff, type: 3}
       propertyPath: upgrades.Array.data[2].upgrades.Array.data[0].effect.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 3115904549983027148}
@@ -915,6 +968,18 @@ PrefabInstance:
       objectReference: {fileID: 3115904549983027148}
     - target: {fileID: 3653831802331841547, guid: 910cbad47dc260747a65029fca11edff, type: 3}
       propertyPath: upgrades.Array.data[2].upgrades.Array.data[2].effect.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3115904549983027148}
+    - target: {fileID: 3653831802331841547, guid: 910cbad47dc260747a65029fca11edff, type: 3}
+      propertyPath: upgrades.Array.data[3].upgrades.Array.data[0].effect.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3115904549983027148}
+    - target: {fileID: 3653831802331841547, guid: 910cbad47dc260747a65029fca11edff, type: 3}
+      propertyPath: upgrades.Array.data[3].upgrades.Array.data[1].effect.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3115904549983027148}
+    - target: {fileID: 3653831802331841547, guid: 910cbad47dc260747a65029fca11edff, type: 3}
+      propertyPath: upgrades.Array.data[3].upgrades.Array.data[2].effect.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 3115904549983027148}
     - target: {fileID: 3653831802331841547, guid: 910cbad47dc260747a65029fca11edff, type: 3}
@@ -930,6 +995,18 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3653831802331841547, guid: 910cbad47dc260747a65029fca11edff, type: 3}
+      propertyPath: upgrades.Array.data[3].upgrades.Array.data[0].effect.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3653831802331841547, guid: 910cbad47dc260747a65029fca11edff, type: 3}
+      propertyPath: upgrades.Array.data[3].upgrades.Array.data[1].effect.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3653831802331841547, guid: 910cbad47dc260747a65029fca11edff, type: 3}
+      propertyPath: upgrades.Array.data[3].upgrades.Array.data[2].effect.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3653831802331841547, guid: 910cbad47dc260747a65029fca11edff, type: 3}
       propertyPath: upgrades.Array.data[2].upgrades.Array.data[0].effect.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: FireDelayExponential
       objectReference: {fileID: 0}
@@ -940,6 +1017,18 @@ PrefabInstance:
     - target: {fileID: 3653831802331841547, guid: 910cbad47dc260747a65029fca11edff, type: 3}
       propertyPath: upgrades.Array.data[2].upgrades.Array.data[2].effect.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: FireDelayAdditive
+      objectReference: {fileID: 0}
+    - target: {fileID: 3653831802331841547, guid: 910cbad47dc260747a65029fca11edff, type: 3}
+      propertyPath: upgrades.Array.data[3].upgrades.Array.data[0].effect.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: DamageAdditive
+      objectReference: {fileID: 0}
+    - target: {fileID: 3653831802331841547, guid: 910cbad47dc260747a65029fca11edff, type: 3}
+      propertyPath: upgrades.Array.data[3].upgrades.Array.data[1].effect.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: DamageMultiplicative
+      objectReference: {fileID: 0}
+    - target: {fileID: 3653831802331841547, guid: 910cbad47dc260747a65029fca11edff, type: 3}
+      propertyPath: upgrades.Array.data[3].upgrades.Array.data[2].effect.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: DamageExponential
       objectReference: {fileID: 0}
     - target: {fileID: 3653831802331841547, guid: 910cbad47dc260747a65029fca11edff, type: 3}
       propertyPath: upgrades.Array.data[2].upgrades.Array.data[0].effect.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -954,6 +1043,18 @@ PrefabInstance:
       value: UpgradeManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3653831802331841547, guid: 910cbad47dc260747a65029fca11edff, type: 3}
+      propertyPath: upgrades.Array.data[3].upgrades.Array.data[0].effect.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UpgradeManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3653831802331841547, guid: 910cbad47dc260747a65029fca11edff, type: 3}
+      propertyPath: upgrades.Array.data[3].upgrades.Array.data[1].effect.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UpgradeManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3653831802331841547, guid: 910cbad47dc260747a65029fca11edff, type: 3}
+      propertyPath: upgrades.Array.data[3].upgrades.Array.data[2].effect.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UpgradeManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3653831802331841547, guid: 910cbad47dc260747a65029fca11edff, type: 3}
       propertyPath: upgrades.Array.data[2].upgrades.Array.data[0].effect.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
@@ -963,6 +1064,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3653831802331841547, guid: 910cbad47dc260747a65029fca11edff, type: 3}
       propertyPath: upgrades.Array.data[2].upgrades.Array.data[2].effect.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3653831802331841547, guid: 910cbad47dc260747a65029fca11edff, type: 3}
+      propertyPath: upgrades.Array.data[3].upgrades.Array.data[0].effect.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3653831802331841547, guid: 910cbad47dc260747a65029fca11edff, type: 3}
+      propertyPath: upgrades.Array.data[3].upgrades.Array.data[1].effect.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3653831802331841547, guid: 910cbad47dc260747a65029fca11edff, type: 3}
+      propertyPath: upgrades.Array.data[3].upgrades.Array.data[2].effect.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 4347695401121428894, guid: 910cbad47dc260747a65029fca11edff, type: 3}
