@@ -858,5 +858,5 @@ MonoBehaviour:
   health: {fileID: 0}
   movement: {fileID: 0}
   shooting: {fileID: 0}
-  isDebug: 1
+  isDebug: 0
   gainExp: {fileID: 5784759831282112713, guid: 062092cd9ed3d8d43abd7981adef1cc0, type: 3}
