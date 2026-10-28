@@ -1,45 +1,50 @@
+using System.Collections;
 using Unity.Netcode;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerHealth : NetworkBehaviour
 {
-    [Header("Health")]
-    [SerializeField] HealthStat healthStat;
-    public int health;
-
-    [Header("Invincibility")]
-    public float invincibilityTime;
-    private float invincibilityTimer;
+    public float maxHealth;
+    public float health;
+    private bool immune;
 
     void Start()
     {
-        health = healthStat.health;
-    }
-
-    private void Update()
-    {
-        if (invincibilityTimer > 0) invincibilityTimer -= Time.deltaTime;
+        health = maxHealth;
     }
 
     [Rpc(SendTo.Server)]
-    public void TakeDamageServerRpc(int damage, ulong clientID)
+    public void TakeDamageServerRpc(float damage, ulong clientID)
     {
-        if (invincibilityTimer > 0) return;
+        if (immune) return;
         TakeDamageClientRpc(damage, clientID);
     }
 
     [Rpc(SendTo.ClientsAndHost)]
-    private void TakeDamageClientRpc(int damage, ulong clientID)
+    private void TakeDamageClientRpc(float damage, ulong clientID)
     {
-        health -= damage;
-        invincibilityTimer = invincibilityTime;
-        Debug.Log("Ow");
-        if (health <= 0)
+        if (immune) return;
+
+        if (IsLocalPlayer)
         {
-            DieServerRpc(clientID);
+            if (GetComponentInParent<LobbyPlayer>().clientID == clientID) //Damage is only dealt to the client that took damage.
+            {
+                health -= damage;
+                StartCoroutine(MakeImmune());
+                Debug.Log("Ow");
+                if (health <= 0)
+                {
+                    DieServerRpc(clientID);
+                }
+            }
         }
-        
+    }
+
+    IEnumerator MakeImmune()
+    {
+        immune = true;
+        yield return new WaitForEndOfFrame();
+        immune = false;
     }
 
     [Rpc(SendTo.Server)]

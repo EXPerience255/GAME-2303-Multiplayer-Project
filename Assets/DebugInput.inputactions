@@ -1,0 +1,36 @@
+{
+    "version": 1,
+    "name": "DebugInput",
+    "maps": [
+        {
+            "name": "Experience",
+            "id": "365305e5-25a6-4975-82c8-d4b690963352",
+            "actions": [
+                {
+                    "name": "Gain",
+                    "type": "Button",
+                    "id": "36666b63-8dc3-44d5-9d26-76fdfdd9c0b9",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "feb42e9e-c6a6-46af-a1c1-4121e6041436",
+                    "path": "<Keyboard>/equals",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Gain",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
