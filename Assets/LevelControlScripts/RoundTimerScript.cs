@@ -1,15 +1,24 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
-public class RoundTimerScript : MonoBehaviour
+using Unity.Netcode;
+using Unity.VisualScripting;
+public class RoundTimerScript : NetworkBehaviour
 {
     public UnityEvent<string> PassTimeToTimerText;
     public UnityEvent TimerEnded;
     public float maxTimeInSeconds = 5;
     public float timePassed = 0;
-    public float timerNumber;
+    NetworkVariable<float> timerNumber;
 
     private void Awake()
+    {
+        timerNumber = new NetworkVariable<float>();
+
+
+    }
+    
+    public void Start()
     {
         SetTimerText();
         StartCoroutine(CollapseWalls());
@@ -42,7 +51,7 @@ public class RoundTimerScript : MonoBehaviour
 
     void SetTimerText()
     {
-        timerNumber = maxTimeInSeconds - timePassed;
-        PassTimeToTimerText.Invoke("Time to Wall Collapse: " + timerNumber);
+        timerNumber.Value = maxTimeInSeconds - timePassed;
+        PassTimeToTimerText.Invoke("Time to Wall Collapse: " + timerNumber.Value);
     }
 }

@@ -11,6 +11,11 @@ TagManager:
   - EnemySpawn
   - PlayerSpawn
   - Enemy
+  - Player2Text
+  - Player1Text
+  - Player3Text
+  - Player4Text
+  - PlayerBullet
   layers:
   - Default
   - TransparentFX
