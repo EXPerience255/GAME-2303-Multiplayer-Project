@@ -256,7 +256,7 @@ MonoBehaviour:
   - {fileID: 2034760099}
   - {fileID: 2111315091}
   - {fileID: 412727881}
-  spawnTimerMax: 1
+  spawnTimerMax: 3.333
   playerCountSpawnModifier: 2
   playersInZone: []
 --- !u!1 &84943226
@@ -365,7 +365,7 @@ MonoBehaviour:
   - {fileID: 1236133249}
   - {fileID: 1940030541}
   - {fileID: 1679877952}
-  spawnTimerMax: 1
+  spawnTimerMax: 3.333
   playerCountSpawnModifier: 2
   playersInZone: []
 --- !u!1 &119703690
@@ -1163,7 +1163,7 @@ MonoBehaviour:
   - {fileID: 1245829841}
   - {fileID: 1060120433}
   - {fileID: 119703691}
-  spawnTimerMax: 1
+  spawnTimerMax: 3.333
   playerCountSpawnModifier: 2
   playersInZone: []
 --- !u!1 &840324978
@@ -2815,7 +2815,7 @@ MonoBehaviour:
   - {fileID: 1388780337}
   - {fileID: 840324979}
   - {fileID: 1174777188}
-  spawnTimerMax: 2
+  spawnTimerMax: 3.333
   playerCountSpawnModifier: 2
   playersInZone: []
 --- !u!54 &1859707359
