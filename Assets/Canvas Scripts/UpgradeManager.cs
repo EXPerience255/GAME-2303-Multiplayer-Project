@@ -2,6 +2,7 @@ using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
+using Unity.VisualScripting;
 
 public class UpgradeManager : NetworkBehaviour
 {
@@ -187,9 +188,9 @@ public class UpgradeManager : NetworkBehaviour
 
     // Fire Delay
     /*
-    Note: Rarity order is reversed for this upgrade type due to addition (technically subtraction, but still) 
-          is the strongest operation for going down, and shootSpeed gets better the lower it is.
-    */
+     * Note: Rarity order is reversed for this upgrade type due to addition (technically subtraction, but still) 
+     *       is the strongest operation for going down, and shootSpeed gets better the lower it is.
+     */
     public void FireDelayAdditive()
     {
         shooting.shootSpeed -= 0.08f;
@@ -210,19 +211,47 @@ public class UpgradeManager : NetworkBehaviour
     }
 
     // Damage
+    /*
+     * Note: RPCs are used here so that bullets spawned on clients other than the upgraded player's
+     *       will deal the correct amount of damage.
+     */
     public void DamageAdditive()
     {
-        shooting.damage += 1f;
+        TellServerToUpgradeDamageRpc(0);
         CommonUpgradeCleanup();
     }
     public void DamageMultiplicative()
     {
-        shooting.damage *= 1.15f;
+        TellServerToUpgradeDamageRpc(1);
         CommonUpgradeCleanup();
     }
     public void DamageExponential()
     {
-        shooting.damage = Mathf.Pow(shooting.damage, 1.05f);
+        TellServerToUpgradeDamageRpc(2);
         CommonUpgradeCleanup();
+    }
+    [Rpc(SendTo.Server)]
+    public void TellServerToUpgradeDamageRpc(int type)
+    {
+        TellClientsToUpgradeDamageRpc(type);
+    }
+    [Rpc(SendTo.ClientsAndHost)]
+    public void TellClientsToUpgradeDamageRpc(int type)
+    {
+        switch (type)
+        {
+            case 0:
+                shooting.damage += 1f;
+                break;
+            case 1:
+                shooting.damage *= 1.15f;
+                break;
+            case 2:
+                shooting.damage = Mathf.Pow(shooting.damage, 1.05f);
+                break;
+            default:
+                Debug.LogError("UpgradeManager.cs, TellClientsToUpgradeDamageRpc(): Somehow, an invalid type was inputed. Make sure type is 0, 1, or 2!");
+                break;
+        }
     }
 }

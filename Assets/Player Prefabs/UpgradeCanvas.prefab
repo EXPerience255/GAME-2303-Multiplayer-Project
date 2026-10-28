@@ -724,6 +724,112 @@ MonoBehaviour:
               m_BoolArgument: 0
             m_CallState: 2
       button: {fileID: 7576733441935600836, guid: b66aa4df389d5184492e9120a1577395, type: 3}
+  - name: FireDelay
+    upgrades:
+    - rarity: 0
+      effect:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 7829826000875189602}
+            m_TargetAssemblyTypeName: UpgradeManager, Assembly-CSharp
+            m_MethodName: FireDelayExponential
+            m_Mode: 1
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+      button: {fileID: 7576733441935600836, guid: a45120caf9c543c41a5a0125f6e759fd, type: 3}
+    - rarity: 1
+      effect:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 7829826000875189602}
+            m_TargetAssemblyTypeName: UpgradeManager, Assembly-CSharp
+            m_MethodName: FireDelayMultiplicative
+            m_Mode: 1
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+      button: {fileID: 7576733441935600836, guid: 3bd4455cc9937a748ba49916fe5119ff, type: 3}
+    - rarity: 2
+      effect:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 7829826000875189602}
+            m_TargetAssemblyTypeName: UpgradeManager, Assembly-CSharp
+            m_MethodName: FireDelayAdditive
+            m_Mode: 1
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+      button: {fileID: 7576733441935600836, guid: c495657f0aea5ae40b685707cbcedc6c, type: 3}
+  - name: Damage
+    upgrades:
+    - rarity: 0
+      effect:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 7829826000875189602}
+            m_TargetAssemblyTypeName: UpgradeManager, Assembly-CSharp
+            m_MethodName: DamageAdditive
+            m_Mode: 1
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+      button: {fileID: 7576733441935600836, guid: ca5faafcff322134c9a46aaa5d8eacaf, type: 3}
+    - rarity: 1
+      effect:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 7829826000875189602}
+            m_TargetAssemblyTypeName: UpgradeManager, Assembly-CSharp
+            m_MethodName: DamageMultiplicative
+            m_Mode: 1
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+      button: {fileID: 7576733441935600836, guid: 2327f33466692764a8baec9c62e2280a, type: 3}
+    - rarity: 2
+      effect:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 7829826000875189602}
+            m_TargetAssemblyTypeName: UpgradeManager, Assembly-CSharp
+            m_MethodName: DamageExponential
+            m_Mode: 1
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+      button: {fileID: 7576733441935600836, guid: fe5e3bb0b776c9f4fb37e2a91aecfee3, type: 3}
 --- !u!114 &7829826000875189602
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -751,5 +857,6 @@ MonoBehaviour:
   spawner: {fileID: 2437562949493444439}
   health: {fileID: 0}
   movement: {fileID: 0}
+  shooting: {fileID: 0}
   isDebug: 1
   gainExp: {fileID: 5784759831282112713, guid: 062092cd9ed3d8d43abd7981adef1cc0, type: 3}
