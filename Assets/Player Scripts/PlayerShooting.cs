@@ -6,6 +6,7 @@ using Unity.Netcode;
 public class PlayerShooting : NetworkBehaviour
 {
     public InputActionReference shootAction;
+    public UpgradeManager experience;
 
     [Header("Spawn Setup")]
     public Transform bulletSpawnPoint;
@@ -72,7 +73,9 @@ public class PlayerShooting : NetworkBehaviour
 
         NetworkObject bullet = Instantiate(baseBullet, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
         bullet.Spawn();
-        bullet.GetComponent<PlayerBullet>().damage = damage;
+        PlayerBullet bulletData = bullet.GetComponent<PlayerBullet>();
+        bulletData.damage = damage;
+        bulletData.experience = experience;
         bullet.GetComponent<Rigidbody>().AddForce(bulletSpawnPoint.forward * shotForce, ForceMode.Impulse);
     }
 

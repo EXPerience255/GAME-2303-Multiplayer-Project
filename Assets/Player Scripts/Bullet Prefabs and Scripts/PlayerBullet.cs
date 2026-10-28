@@ -2,18 +2,19 @@ using UnityEngine;
 using Unity.Netcode;
 public class PlayerBullet : NetworkBehaviour
 {
-    ulong clientID;
+    // ulong clientID; // unused
+    public UpgradeManager experience;
     public float damage = 1;
     public float killTimer = 2f;
 
     void Start()
     {
-        clientID = NetworkManager.Singleton.LocalClientId;
+        // clientID = NetworkManager.Singleton.LocalClientId;
         DestroyRpc(killTimer);
     }
 
     [Rpc(SendTo.Server)]
-    private void DestroyRpc(float killTimer) //Server has to destroy it
+    public void DestroyRpc(float killTimer) //Server has to destroy it
     {
         NetworkObject.Destroy(gameObject, killTimer);
     }

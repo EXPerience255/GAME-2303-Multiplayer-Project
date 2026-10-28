@@ -172,7 +172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 1229265610
+  GlobalObjectIdHash: 2593569269
   InScenePlacedSourceGlobalObjectIdHash: 0
   m_InScenePlacedDisabledByDefault: 0
   DeferredDespawnTick: 0
@@ -398,7 +398,7 @@ Transform:
   m_GameObject: {fileID: 5405331499641913967}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 1.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -584,11 +584,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerShooting
   ShowTopMostFoldoutHeaderGroup: 1
   shootAction: {fileID: -5493511989004984119, guid: fa75a9d0cef467f4a9066b821f381bbe, type: 3}
+  experience: {fileID: 3115904549983027148}
   bulletSpawnPoint: {fileID: 6518937063403933593}
   shotForce: 10
   damage: 1
   baseBullet: {fileID: 6631598257362698901, guid: 731bfc6cd42cec34fb1b1b99340df3fe, type: 3}
-  shootSpeed: 0.2
+  shootSpeed: 0.99
   canShoot: 0
   currentlyShooting: 0
 --- !u!114 &6978966720316567543

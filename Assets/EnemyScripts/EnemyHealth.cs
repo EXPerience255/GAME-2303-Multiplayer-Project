@@ -6,6 +6,8 @@ using Unity.Netcode;
 public class EnemyHealth : NetworkBehaviour
 {
     PlayerShooting _playerShootScript;
+    UpgradeManager experience;
+
     [Header("Material Types")]
     [SerializeField] MeshRenderer[] _mRenderer;
     public Material baseMat;
@@ -36,9 +38,12 @@ public class EnemyHealth : NetworkBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "PlayerBullet" && IsSpawned)
+        PlayerBullet bullet = other.GetComponent<PlayerBullet>();
+
+        if (bullet && IsSpawned)
         {
-            
+            experience = bullet.experience;
+            bullet.DestroyRpc(0);
             takeDamageServerRpc();
         }
         
@@ -69,6 +74,7 @@ public class EnemyHealth : NetworkBehaviour
     [Rpc(SendTo.Server)]
     public void EnemyDieRpc()
     {
+        experience.GainExp();
         NetworkObject.Destroy(gameObject);
     }
 
