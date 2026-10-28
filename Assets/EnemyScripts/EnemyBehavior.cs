@@ -119,6 +119,7 @@ public class EnemyBehavior : MonoBehaviour
     public void AquireTarget()
     {
         _player = currentZone.GrabPlayer();
+        Debug.Log("Target: " + _player.GetComponentInParent<LobbyPlayer>().clientID);
     }
 
     private void OnDrawGizmosSelected()

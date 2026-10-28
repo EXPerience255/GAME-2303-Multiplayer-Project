@@ -23,6 +23,7 @@ public class ZoneScript : NetworkBehaviour
     private void Update()
     {
         Spawner();
+        
     }
     private void OnTriggerStay(Collider other)
     {
@@ -84,7 +85,7 @@ public class ZoneScript : NetworkBehaviour
             return choosePlayer;
         }
 
-        if (FindAnyObjectByType<PlayerHealth>() != null) {
+        if (GameObject.FindWithTag("Player") != null) {
             GameObject[] possibleTargets = GameObject.FindGameObjectsWithTag("Player");
             return choosePlayer = possibleTargets[Random.Range(0, possibleTargets.Count() - 1)];
         }
