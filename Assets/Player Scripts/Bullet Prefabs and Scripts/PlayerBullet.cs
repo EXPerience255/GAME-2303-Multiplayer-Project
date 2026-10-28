@@ -15,7 +15,7 @@ public class PlayerBullet : NetworkBehaviour
     [Rpc(SendTo.Server)]
     private void DestroyRpc(float killTimer) //Server has to destroy it
     {
-        Destroy(gameObject, killTimer);
+        NetworkObject.Destroy(gameObject, killTimer);
     }
 
     /*private void OnTriggerEnter(Collider other)

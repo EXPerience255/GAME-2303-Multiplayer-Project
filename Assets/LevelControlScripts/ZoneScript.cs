@@ -2,11 +2,13 @@ using NUnit.Framework.Constraints;
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
+using Unity.Netcode;
 
-public class ZoneScript : MonoBehaviour
+public class ZoneScript : NetworkBehaviour
 {
     NetworkHud NH;
-    public GameObject enemyPrefab;
+    [SerializeField] NetworkObject enemyPrefab;
     public Transform[] enemySpawns;
     public float spawnTimerMax;
     float runningSpawnTimer;
@@ -49,11 +51,13 @@ public class ZoneScript : MonoBehaviour
         }
     }
 
-    public void SpawnEnemy()
+    [Rpc(SendTo.Server)]
+    public void SpawnEnemyRpc()
     {
         int ChoseSpawn = Random.Range(0, enemySpawns.Count() - 1);
         Vector3 SpawnLocation = enemySpawns[ChoseSpawn].position;
-        GameObject newEnemey = Instantiate(enemyPrefab, SpawnLocation, Quaternion.identity);
+        NetworkObject newEnemey = Instantiate(enemyPrefab, SpawnLocation, Quaternion.identity);
+        newEnemey.Spawn();
         EnemyBehavior EB = newEnemey.gameObject.GetComponent<EnemyBehavior>();
         EB.currentZone = this;
         EB.AquireTarget();
@@ -64,22 +68,25 @@ public class ZoneScript : MonoBehaviour
         runningSpawnTimer += Time.deltaTime;
         if (runningSpawnTimer >= spawnTimerMax)
         {
-            SpawnEnemy();
+            SpawnEnemyRpc();
             runningSpawnTimer = 0;
         }
     }
 
     public GameObject GrabPlayer()
     {
+        GameObject choosePlayer;
         if (playersInZone.Count > 0)
         {
-            GameObject choosePlayer = playersInZone[Random.Range(0, playersInZone.Count - 1)];
+            choosePlayer = playersInZone[Random.Range(0, playersInZone.Count - 1)];
 
             return choosePlayer;
         }
 
-        if(FindAnyObjectByType<PlayerHealth>() != null)
-            return NH.GetPlayerObjectById((ulong)Random.Range(1, NH.clientIDs.Value)-1);
+        if (FindAnyObjectByType<PlayerHealth>() != null) {
+            choosePlayer = NH.GetPlayerObjectById((ulong)Random.Range(1, NH.clientIDs.Value) - 1);
+            return choosePlayer.transform.GetChild(0).gameObject;
+        }
 
         return null;
     }

@@ -1,8 +1,9 @@
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using Unity.Netcode;
 
-public class EnemyHealth : MonoBehaviour
+public class EnemyHealth : NetworkBehaviour
 {
     PlayerShooting _playerShootScript;
     [Header("Material Types")]
@@ -11,61 +12,70 @@ public class EnemyHealth : MonoBehaviour
     public Material hitFlashMat;
 
     [Header("Enemy Health")]
-    public int enemyHealth = 5;
+    public int healthMax = 5;
+    public int enemyHealth;
+
+    bool takenDamage;
 
     
-
-   
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.gameObject.tag == "PlayerBullet")
-        {
-            Destroy(other.gameObject);
-            StartCoroutine(takeDamage());
-        }
-        if (other.gameObject.tag == "PlayerBigBullet")
-        {
-            
-            StartCoroutine(takeDamage());
-        }
-    }
-
-    void Start()
+    private void Start()
     {
         _playerShootScript = GameObject.FindAnyObjectByType<PlayerShooting>();
         foreach (MeshRenderer m in _mRenderer)
         {
             m.material = baseMat;
         }
+        SetHealth(healthMax);
     }
 
-   
-    void Update()
+    
+    public void SetHealth(int addHealth)
     {
+        enemyHealth = addHealth;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "PlayerBullet" && IsSpawned)
+        {
+            Destroy(other.gameObject);
+            takeDamageServerRpc();
+        }
         
     }
 
-    IEnumerator takeDamage()
+    [Rpc(SendTo.Server)]
+    public void takeDamageServerRpc()
     {
-        enemyHealth--;
+        if (takenDamage) return;
+        takeDamageClientRpc();
+    }
+
+
+    [Rpc(SendTo.ClientsAndHost)]
+    public void takeDamageClientRpc()
+    {
+        if (takenDamage) return;
+        StartCoroutine(DamageStop());
+        SetHealth(-1);
         if (enemyHealth <= 0)
         {
-            //GameManager.Instance._enemiesInPlay--;
-            //GameManager.Instance.EnemyKillCount();
-            Destroy(gameObject);
+
+            EnemyDieRpc();
         }
-        else
-        {
-            foreach (MeshRenderer m in _mRenderer)
-            {
-                m.material =hitFlashMat;
-            }
-        }
-        yield return new WaitForSeconds(0.1f);
-        foreach (MeshRenderer m in _mRenderer)
-        {
-            m.material = baseMat;
-        }
+
+    }
+
+    [Rpc(SendTo.Server)]
+    public void EnemyDieRpc()
+    {
+        NetworkObject.Destroy(gameObject);
+    }
+
+    IEnumerator DamageStop()
+    {
+        takenDamage = true;
+        yield return new WaitForEndOfFrame();
+        takenDamage = false;
     }
 }

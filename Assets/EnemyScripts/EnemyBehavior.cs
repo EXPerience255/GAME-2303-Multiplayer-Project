@@ -40,7 +40,7 @@ public class EnemyBehavior : MonoBehaviour
         updateTimer -= Time.deltaTime;
         if (updateTimer <= 0f && _player != null)
         {
-            if (currentZone != null && _player == !_player.gameObject.activeSelf)
+            if (currentZone != null && !_player.gameObject.activeSelf)
                 AquireTarget();
 
             updateTimer = updateInterval;

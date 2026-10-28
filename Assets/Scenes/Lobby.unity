@@ -1415,6 +1415,11 @@ MonoBehaviour:
   - {fileID: 488403497}
   - {fileID: 1510380900}
   - {fileID: 2117134035}
+  clientIDs:
+    UpdateTraits:
+      MinSecondsBetweenUpdates: 0
+      MaxSecondsBetweenUpdates: 0
+    m_InternalValue: 0
 --- !u!4 &1051428565
 Transform:
   m_ObjectHideFlags: 0

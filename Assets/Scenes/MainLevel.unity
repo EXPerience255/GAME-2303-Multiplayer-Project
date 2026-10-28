@@ -673,7 +673,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 744015327}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -12.5, y: 0, z: 12.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -681,7 +681,7 @@ Transform:
   - {fileID: 656972403}
   - {fileID: 337951657}
   m_Father: {fileID: 1329085727}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!54 &744015329
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -742,7 +742,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4114f8b8fb0ae74099a9601380c1ce0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnenmyGuidanceScript
-  enemyPrefab: {fileID: 2688725284640375417, guid: 9d797d8955211db439ae4829a2b3801e, type: 3}
+  ShowTopMostFoldoutHeaderGroup: 1
+  enemyPrefab: {fileID: 45657371315713392, guid: 9d797d8955211db439ae4829a2b3801e, type: 3}
   enemySpawns:
   - {fileID: 303699556}
   - {fileID: 1447678241}
@@ -1699,6 +1700,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1329085727}
+  - component: {fileID: 1329085728}
   - component: {fileID: 1329085726}
   m_Layer: 0
   m_Name: Director
@@ -1719,6 +1721,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dc658504fc5a0946878c7db6f665fe5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WallTimerScript
+  ShowTopMostFoldoutHeaderGroup: 1
   PassTimeToTimerText:
     m_PersistentCalls:
       m_Calls:
@@ -1749,7 +1752,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  maxTimeInSeconds: 100
+  maxTimeInSeconds: 5
   timePassed: 0
 --- !u!4 &1329085727
 Transform:
@@ -1769,6 +1772,33 @@ Transform:
   - {fileID: 1471215904}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1329085728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1329085725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
+  GlobalObjectIdHash: 1026868400
+  InScenePlacedSourceGlobalObjectIdHash: 0
+  m_InScenePlacedDisabledByDefault: 0
+  DeferredDespawnTick: 0
+  Ownership: 1
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  m_InScenePlaced: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 0
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
+  SyncOwnerTransformWhenParented: 1
+  AllowOwnerToParent: 0
 --- !u!1 &1388780336
 GameObject:
   m_ObjectHideFlags: 0
@@ -2138,7 +2168,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4114f8b8fb0ae74099a9601380c1ce0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnenmyGuidanceScript
-  enemyPrefab: {fileID: 2688725284640375417, guid: 9d797d8955211db439ae4829a2b3801e, type: 3}
+  ShowTopMostFoldoutHeaderGroup: 1
+  enemyPrefab: {fileID: 45657371315713392, guid: 9d797d8955211db439ae4829a2b3801e, type: 3}
   enemySpawns:
   - {fileID: 10202931}
   - {fileID: 1321410757}
@@ -2147,7 +2178,7 @@ MonoBehaviour:
   - {fileID: 1388780337}
   - {fileID: 840324979}
   - {fileID: 1174777188}
-  spawnTimerMax: 1
+  spawnTimerMax: 2
   playerCountSpawnModifier: 2
   playersInZone: []
 --- !u!54 &1859707359

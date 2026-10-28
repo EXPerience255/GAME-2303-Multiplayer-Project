@@ -20,7 +20,7 @@ public class RoundTimerScript : NetworkBehaviour
     
     public void Start()
     {
-        SetTimerText();
+        SetTimerTextRpc();
         StartCoroutine(CollapseWalls());
         StartCoroutine(TrackTime());
     }
@@ -35,7 +35,7 @@ public class RoundTimerScript : NetworkBehaviour
     {
         yield return new WaitForSeconds(1);
         timePassed++;
-        SetTimerText();
+        SetTimerTextRpc();
         if (timePassed! <= maxTimeInSeconds)
             StartCoroutine(TrackTime());
         if(timePassed >= maxTimeInSeconds)
@@ -49,7 +49,8 @@ public class RoundTimerScript : NetworkBehaviour
         PassTimeToTimerText.Invoke("");
     }
 
-    void SetTimerText()
+    [Rpc(SendTo.Server)]
+    void SetTimerTextRpc()
     {
         timerNumber.Value = maxTimeInSeconds - timePassed;
         PassTimeToTimerText.Invoke("Time to Wall Collapse: " + timerNumber.Value);

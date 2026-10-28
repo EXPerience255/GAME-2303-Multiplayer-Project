@@ -588,7 +588,7 @@ MonoBehaviour:
   shotForce: 10
   damage: 1
   baseBullet: {fileID: 6631598257362698901, guid: 731bfc6cd42cec34fb1b1b99340df3fe, type: 3}
-  shootSpeed: 0.99
+  shootSpeed: 0.2
   canShoot: 0
   currentlyShooting: 0
 --- !u!114 &6978966720316567543
