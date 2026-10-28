@@ -118,7 +118,23 @@ public class EnemyBehavior : MonoBehaviour
 
     public void AquireTarget()
     {
-        _player = currentZone.GrabPlayer();
+        //_player = currentZone.GrabPlayer();
+
+        PlayerMovement[] players = FindObjectsByType<PlayerMovement>(FindObjectsSortMode.None);
+        float bestDistance = Mathf.Infinity;
+        PlayerMovement selectedPlayer = null;
+
+        foreach (PlayerMovement player in players)
+        {
+            float distance = Vector3.Distance(transform.position, player.transform.position);
+            if (distance < bestDistance)
+            {
+                bestDistance = distance;
+                selectedPlayer = player;
+            }
+        }
+
+        _player = selectedPlayer.gameObject;
         Debug.Log("Target: " + _player.GetComponentInParent<LobbyPlayer>().clientID);
     }
 
