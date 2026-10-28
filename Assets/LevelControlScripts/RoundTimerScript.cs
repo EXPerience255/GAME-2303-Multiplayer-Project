@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using Unity.Netcode;
 using Unity.VisualScripting;
+using Unity.Collections;
 public class RoundTimerScript : NetworkBehaviour
 {
     public UnityEvent<string> PassTimeToTimerText;
@@ -10,6 +11,7 @@ public class RoundTimerScript : NetworkBehaviour
     public float maxTimeInSeconds = 5;
     public float timePassed = 0;
     NetworkVariable<float> timerNumber;
+    NetworkVariable<FixedString64Bytes> timerText = new NetworkVariable<FixedString64Bytes>();
 
     private void Awake()
     {
@@ -53,6 +55,8 @@ public class RoundTimerScript : NetworkBehaviour
     void SetTimerTextRpc()
     {
         timerNumber.Value = maxTimeInSeconds - timePassed;
-        PassTimeToTimerText.Invoke("Time to Wall Collapse: " + timerNumber.Value);
+        timerText.Value = "Time to Wall Collapse: " + timerNumber.Value;
+
+        PassTimeToTimerText.Invoke(timerText.Value.ToString());
     }
 }

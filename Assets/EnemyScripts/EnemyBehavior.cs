@@ -1,4 +1,5 @@
 using Unity.Cinemachine;
+using Unity.Netcode;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
@@ -20,6 +21,11 @@ public class EnemyBehavior : MonoBehaviour
     public float separtionStrength = 3f;
     public LayerMask enemyLayer;
 
+    [Header("Attack Ellements")]
+    public float attackRate = 0.5f;
+    private float attackCooldown;
+    public float damageValue = 1;
+
 
     public ZoneScript currentZone;
     private void Awake()
@@ -30,17 +36,30 @@ public class EnemyBehavior : MonoBehaviour
     }
 
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        PlayerHealth target = collision.gameObject.GetComponent<PlayerHealth>();
+
+        if (target != null && attackCooldown >= attackRate)
+        {
+            target.TakeDamageServerRpc(damageValue, collision.gameObject.GetComponentInParent<NetworkObject>().OwnerClientId);
+            attackCooldown = 0;
+
+            if (target == null) AquireTarget();
+        }
+    }
+
     private void Update()
     {
         
-
+        
         if (_agent == null || !_agent.isOnNavMesh)
             return;
 
         updateTimer -= Time.deltaTime;
         if (updateTimer <= 0f && _player != null)
         {
-            if (currentZone != null && !_player.gameObject.activeSelf)
+            if (currentZone != null && !_player.gameObject.activeInHierarchy)
                 AquireTarget();
 
             updateTimer = updateInterval;
@@ -56,7 +75,8 @@ public class EnemyBehavior : MonoBehaviour
                 _agent.SetDestination(_destination);
             }
         }
-        
+        attackCooldown += Time.deltaTime;
+        Mathf.Clamp(attackCooldown, 0, attackRate +0.1f);
     }
 
     private Vector3 GetSeperationVector()

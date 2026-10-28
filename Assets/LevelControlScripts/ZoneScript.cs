@@ -29,7 +29,7 @@ public class ZoneScript : NetworkBehaviour
         if (other.tag == "Player" && !playersInZone.Contains(other.gameObject))
         {
             playersInZone.Add(other.gameObject);
-            Debug.Log("added player" + playersInZone[0].name);
+            
             spawnTimerMax *= playerCountSpawnModifier;
         }
 
@@ -47,6 +47,7 @@ public class ZoneScript : NetworkBehaviour
         if (playersInZone.Contains(other.gameObject))
         {
             playersInZone.Remove(other.gameObject);
+            Debug.Log("Exitzone");
             spawnTimerMax /= playerCountSpawnModifier;
         }
     }
@@ -84,10 +85,10 @@ public class ZoneScript : NetworkBehaviour
         }
 
         if (FindAnyObjectByType<PlayerHealth>() != null) {
-            choosePlayer = NH.GetPlayerObjectById((ulong)Random.Range(1, NH.clientIDs.Value) - 1);
-            return choosePlayer.transform.GetChild(0).gameObject;
+            GameObject[] possibleTargets = GameObject.FindGameObjectsWithTag("Player");
+            return choosePlayer = possibleTargets[Random.Range(0, possibleTargets.Count() - 1)];
         }
 
-        return null;
+        return this.gameObject;
     }
 }

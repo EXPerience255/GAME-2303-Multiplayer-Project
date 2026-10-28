@@ -38,7 +38,7 @@ public class EnemyHealth : NetworkBehaviour
     {
         if(other.gameObject.tag == "PlayerBullet" && IsSpawned)
         {
-            Destroy(other.gameObject);
+            
             takeDamageServerRpc();
         }
         
